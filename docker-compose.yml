@@ -10,6 +10,7 @@ services:
     environment:
       SERVICES: api
       PORT: 3000
+      APP_ENV: DEV
     depends_on:
       - nats
       - redis
@@ -20,26 +21,14 @@ services:
     networks:
       - internal
 
-  greeter:
+  users:
     build:
       context: .
     image: fatcat-tasks
     env_file: docker-compose.env
     environment:
-      SERVICES: greeter
-    depends_on:
-      - nats
-      - redis
-    networks:
-      - internal
-
-  products:
-    build:
-      context: .
-    image: fatcat-tasks
-    env_file: docker-compose.env
-    environment:
-      SERVICES: products
+      SERVICES: users
+      APP_ENV: DEV
     depends_on:
       - mongo
       - nats
@@ -47,20 +36,58 @@ services:
     networks:
       - internal
 
+  tasks:
+    build:
+      context: .
+    image: fatcat-tasks
+    env_file: docker-compose.env
+    environment:
+      SERVICES: tasks
+      APP_ENV: DEV
+    depends_on:
+      - mongo
+      - nats
+      - redis
+    networks:
+      - internal
+
+  mailer:
+    build:
+      context: .
+    image: fatcat-tasks
+    env_file: docker-compose.env
+    environment:
+      SERVICES: mailer
+      APP_ENV: DEV
+    depends_on:
+      - mongo
+      - nats
+      - redis
+    networks:
+      - internal
+        
   mongo:
     image: mongo:4
     volumes:
       - data:/data/db
+    ports:
+      - 27017:27017
     networks:
       - internal
 
   nats:
     image: nats:2
+    ports:
+      - 4222:4222
+      - 6222:6222
+      - 8222:8222
     networks:
       - internal
 
   redis:
     image: redis:alpine
+    ports:
+      - 6379:6379
     networks:
       - internal
 

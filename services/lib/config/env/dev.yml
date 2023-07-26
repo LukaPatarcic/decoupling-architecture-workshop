@@ -1,0 +1,35 @@
+env: DEV
+
+logger:
+  type: "Console"
+  options:
+    colors: true
+    moduleColors: false
+    formatter: "full"
+    objectPrinter: null
+    autoPadding: false
+tracing: false
+
+bull:
+  uri: redis://redis:6379
+moleculer:
+  namespace: dev
+  uri: redis://redis:6379
+redis:
+  host: redis
+  port: 6379
+mongo:
+  uri: mongodb://mongo/fatcat-tasks
+
+mail:
+  service: 'Mailgun'
+  from: "FatCat Coders <mailgun@sandbox7a3086449a9f48bb8f6a67191737a433.mailgun.org>"
+  auth:
+    apiKey: 0e033fdd5dbd91b762a8f3bd4a564b38-73f745ed-902bba49
+    domain: sandbox7a3086449a9f48bb8f6a67191737a433.mailgun.org
+
+auth:
+  pepper: '7121756d095463284d72'
+  secret: 'fatcatcoders'
+  expiration: 86400 # 1 day
+  refreshTokenExpiration: 604800 # 7 days

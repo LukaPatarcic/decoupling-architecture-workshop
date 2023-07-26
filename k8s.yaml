@@ -123,19 +123,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: products
+  name: tasks
 spec:
   selector:
     matchLabels:
-      app: products
+      app: tasks
   replicas: 2
   template:
     metadata:
       labels:
-        app: products
+        app: tasks
     spec:
       containers:
-      - name: products
+      - name: tasks
         image: fatcat-tasks
         imagePullPolicy: IfNotPresent
         envFrom:
@@ -143,7 +143,7 @@ spec:
             name: common-env
         env:
           - name: SERVICES
-            value: products
+            value: tasks
 
 ---
 #########################################################
