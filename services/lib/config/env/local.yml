@@ -25,8 +25,8 @@ mail:
   service: 'Mailgun'
   from: "FatCat Coders <mailgun@sandbox7a3086449a9f48bb8f6a67191737a433.mailgun.org>"
   auth:
-    apiKey: 0e033fdd5dbd91b762a8f3bd4a564b38-73f745ed-902bba49
-    domain: sandbox7a3086449a9f48bb8f6a67191737a433.mailgun.org
+    apiKey: ''
+    domain: ''
 
 auth:
   pepper: '7121756d095463284d72'
